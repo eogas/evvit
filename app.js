@@ -1,9 +1,16 @@
-var express = require('express');
-var app = express();
+var express = require('express'),
+	app = express(),
+	swig = require('swig');
 
-app.get('/hello.txt', function(req, res) {
-	res.send('Hello World!');
-});
+// express config
+app.engine('html', swig.renderFile);
+app.set('view_engine', 'html');
+app.set('views', __dirname + '/views');
+
+app.set('view cache', false);
+swig.setDefaults({ cache: false });
+
+var routes = require('./routes')(app);
 
 app.listen(8080);
 console.log('Listening on port 8080...');
