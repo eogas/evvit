@@ -3,6 +3,9 @@ var express = require('express'),
 	swig = require('swig');
 
 // express config
+app.use(express.static(__dirname + '/public'));
+
+// integrate swig into express
 app.engine('html', swig.renderFile);
 app.set('view_engine', 'html');
 app.set('views', __dirname + '/views');
