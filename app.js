@@ -2,6 +2,8 @@ var express = require('express'),
 	app = express(),
 	swig = require('swig');
 
+var models = require('./models')(app);
+
 // express config
 app.use(express.static(__dirname + '/public'));
 
