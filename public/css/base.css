@@ -16,3 +16,9 @@
 	text-align: center;
 	margin: 1em;
 }
+
+.centered-form {
+	width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+}

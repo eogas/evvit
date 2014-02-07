@@ -1,3 +1,4 @@
+
 var express = require('express'),
 	app = express(),
 	swig = require('swig');
@@ -5,6 +6,8 @@ var express = require('express'),
 var models = require('./models')(app);
 
 // express config
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
 
 // integrate swig into express
