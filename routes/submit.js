@@ -1,7 +1,9 @@
 
 module.exports = function(app) {
 	app.get('/submit', function(req, res) {
-		res.render('submit.html');
+		res.render('submit.html', {
+			nosidebar: true
+		});
 	});
 
 	app.post('/submit', function(req, res) {

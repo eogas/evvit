@@ -13,12 +13,22 @@
 	</head>
 	<body>
 		<div id="wrap">
-			<h1>evvit.</h1>
+			<h1 class='col-md-12'>
+				<a href="/" class="logo">evvit.<a>
+			</h1>
 
-			{% block main %}
-			{% endblock %}
+			<div class='col-md-9'>
+				{% block main %}
+				{% endblock %}
+			</div>
+
+			{% if not nosidebar %}
+			<div class='col-md-3'>
+				<a href='/submit' class='btn btn-primary btn-block' role='button'>Submit a new link</a>
+			</div>
+			{% endif %}
 		</div>
-		<div id="footer">
+		<div id="footer" class='col-md-12'>
 			<p class="footer-text">&copy; 2014 Evan J Ogas. All rights reserved.</p>
 		</div>
 	</body>
