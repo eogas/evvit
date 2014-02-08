@@ -41,13 +41,3 @@
 	font-size: 0.85em;
 	color: #999;
 }
-
-.sidebar {
-	display: inline;
-	width: 150px;
-}
-
-.main {
-	display: inline;
-	width: 800px;
-}
