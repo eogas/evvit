@@ -1,10 +1,14 @@
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		var posts;
+		req.models.Post.find({}, "date", function(err, posts) {
+			if (err) {
+				console.log(err);
+			}
 
-		res.render('home.html', {
-			posts: posts
+			res.render('home.html', {
+				posts: posts
+			});
 		});
 	});
 };
