@@ -18,7 +18,8 @@ app.set('views', __dirname + '/views');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-var routes = require('./routes')(app);
+var auth = require('./auth'),
+	routes = require('./routes')(app);
 
 app.listen(8080);
 console.log('Listening on port 8080...');
