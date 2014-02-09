@@ -10,7 +10,11 @@ evvit requires:
 * A MySQL compatible database.  evvit was developed against [MariaDB](https://mariadb.org/), however it should work with MySQL as well.
   * The default implementation connects to `evvit@localhost` with username and password `evvit`.
 
-After pulling the repository, run `npm install` in the base directory to fetch the required node modules.
+Before installing node dependencies, bcrypt's dependencies must be installed:
+* [python2](http://www.python.org/)
+* [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html)
+
+After installing these preliminary depedencies and pulling the repository, run `npm install` in the base directory to fetch the required node modules.
 
 Finally, run `node app` in the base directory to start up the server, and evvit will be served at [localhost:8080](http://localhost:8080/)
 
@@ -27,3 +31,6 @@ evvit was built using:
 * [node-mysql](https://github.com/felixge/node-mysql)
 * [swig](https://github.com/paularmstrong/swig)
 * [Bootstrap](https://github.com/twbs/bootstrap)
+* [node.bcrypt.js](https://github.com/ncb000gt/node.bcrypt.js/)
+* [passport](https://github.com/jaredhanson/passport)
+* [passport-local](https://github.com/jaredhanson/passport-local)
