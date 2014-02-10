@@ -12,21 +12,23 @@ passport.deserializeUser(function(username, done) {
 	models.User.find({
 		username: username
 	}, 1, done);
-})
+});
 
 passport.use(new LocalStrategy(function(username, password, done) {
 	models.User.find({
 		username: username
-	}, 1, function(err, user) {
+	}, 1, function(err, users) {
 		if (err) {
 			return done(err);
 		}
 
-		if (user.length < 1) {
+		if (users.length < 1) {
 			return done(null, false, {
 				message: 'Invalid username or password.'
 			});
 		}
+
+		var user = users[0];
 
 		bcrypt.compare(password, user.password, function(err, res) {
 			if (err) {

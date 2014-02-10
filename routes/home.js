@@ -7,7 +7,8 @@ module.exports = function(app) {
 			}
 
 			res.render('home.html', {
-				posts: posts
+				posts: posts,
+				user: req.user
 			});
 		});
 	});
