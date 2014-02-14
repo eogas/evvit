@@ -5,4 +5,5 @@ module.exports = function(app) {
 	exports.home = require('./login.js')(app);
 	exports.home = require('./register.js')(app);
 	exports.home = require('./submit.js')(app);
+	exports.home = require('./comments.js')(app);
 };
