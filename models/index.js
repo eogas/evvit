@@ -7,14 +7,14 @@ module.exports = function(app) {
 			// set up models
 			models.User = require('./user.js')(db);
 			models.Post = require('./post.js')(db);
+			models.Comment = require('./comment.js')(db);
 
 			// set up relations
-			// TODO: Encapsulate this in the models and just
-			// iterate over them to set up relations.
-			models.Post.hasOne('author', models.User, {
-				reverse: 'posts',
-				autoFetch: true
-			});
+			for (var model in models) {
+				if (models[model].setRelations) {
+					models[model].setRelations(models);
+				}
+			}
 
 			// synchronize models to create tables
 			db.sync(function(err) {
@@ -22,7 +22,7 @@ module.exports = function(app) {
 			});
 
 			// export the models
-			for (var model in models) {
+			for (model in models) {
 				module.exports[model] = models[model];
 			}
 		}
