@@ -10,9 +10,8 @@ module.exports = function(app) {
 		var title = req.body.title,
 			url = req.body.url;
 
-		console.log(req.body);
-
 		req.models.Post.create([{
+			author: req.user,
 			title: title,
 			url: url,
 			date: new Date()

@@ -11,7 +11,9 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(username, done) {
 	models.User.find({
 		username: username
-	}, 1, done);
+	}, 1, function(err, items) {
+		done(err, err || items[0]);
+	});
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {

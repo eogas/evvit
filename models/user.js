@@ -1,7 +1,11 @@
 
+var models = require('../models');
+
 module.exports = function(db) {
-	return db.define('user', {
+	var User = db.define('user', {
 		username: String,
 		password: String
 	});
+
+	return User;
 };

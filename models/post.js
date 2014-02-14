@@ -1,8 +1,12 @@
 
+var models = require('../models');
+
 module.exports = function(db) {
-	return db.define('post', {
+	var Post = db.define('post', {
 		title: String,
 		url: String,
 		date: Date
 	});
+
+	return Post;
 };
