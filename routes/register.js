@@ -1,5 +1,6 @@
 
-var bcrypt = require('bcrypt'),
+var passport = require('passport'),
+	bcrypt = require('bcrypt'),
 	models = require('../models');
 
 module.exports = function(app) {
@@ -18,10 +19,10 @@ module.exports = function(app) {
 
 		models.User.find({
 			username: username
-		}, 1, function(err, users) {
+		}, 1, function(err, existingUsers) {
 
 			// username is in use
-			if (users.length > 0) {
+			if (existingUsers.length > 0) {
 				res.redirect('/');
 				return;
 			}
@@ -37,14 +38,21 @@ module.exports = function(app) {
 				models.User.create([{
 					username: username,
 					password: hash
-				}], function(err, users) {
+				}], function(err, newUsers) {
 					if (err) {
 						console.log(err);
 						return;
 					}
 
+					// small hack to get around different field names
+					// on the registration form
+					req.body.username = username;
+					req.body.password = password;
+
 					// login
-					res.redirect(307, '/login');
+					passport.authenticate('local')(req, res, function() {
+						res.redirect('/');
+					});
 				});
 			});
 		});
