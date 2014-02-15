@@ -1,7 +1,9 @@
 evvit
 =====
 
-evvit is a ghetto clone of reddit using Node.JS and Express.
+evvit is a ghetto clone of reddit using Node.JS and Express.  I am creating it both as a learning experience and as a way to demonstrate my skills to potential employers.  I started the project from scratch on github to document the entire development process.
+
+A live version is hosted at [evvit.evanogas.com](http://evvit.evanogas.com)
 
 installation
 =====
