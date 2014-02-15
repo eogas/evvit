@@ -42,6 +42,20 @@
 	color: #999;
 }
 
+.comment {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.comment-subtext {
+	font-size: 0.85em;
+	color: #999;
+}
+
+.comment .well {
+	margin-bottom: .3em;
+}
+
 form {
 	margin-top: 1em;
 	margin-bottom: 1em;

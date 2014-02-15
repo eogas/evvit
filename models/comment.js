@@ -6,6 +6,11 @@ module.exports = function(db) {
 	});
 
 	Comment.setRelations = function(relModels) {
+		Comment.hasOne('author', relModels.User, {
+			reverse: 'comments',
+			autoFetch: true
+		});
+
 		Comment.hasOne('parentPost', relModels.Post, {
 			reverse: 'comments',
 			autoFetch: true

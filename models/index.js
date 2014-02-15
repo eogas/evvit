@@ -4,6 +4,8 @@ var orm = require('orm');
 module.exports = function(app) {
 	app.use(orm.express('mysql://evvit:evvit@localhost/evvit', {
 		define: function(db, models) {
+			db.settings.set("instance.autoFetchLimit", 2);
+
 			// set up models
 			models.User = require('./user.js')(db);
 			models.Post = require('./post.js')(db);
