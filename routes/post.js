@@ -9,9 +9,16 @@ module.exports = function(app) {
 				return;
 			}
 
-			res.render('post.html', {
-				post: post,
-				user: req.user
+			post.getComments(function(err, comments) {
+				if (err) {
+					console.log(err);
+					return;
+				}
+
+				res.render('post.html', {
+					post: post,
+					user: req.user
+				});
 			});
 		});
 	});
