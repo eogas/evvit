@@ -52,6 +52,10 @@
 	color: #999;
 }
 
+.comment-subtext a {
+	cursor: pointer;
+}
+
 .comment .well {
 	margin-bottom: .3em;
 }
@@ -59,4 +63,9 @@
 form {
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+
+.hidden-reply {
+	display: none;
 }
