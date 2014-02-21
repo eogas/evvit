@@ -29,8 +29,8 @@
 		<span class="comment-subtext">
 			<a onclick="showReply({{ comment.id }});" id="comment-{{ comment.id }}-reply-link">reply</a>
 		</span>
-		<form action="/comment/{{ comment.id }}/comment" method="post" role="form" class="hidden-reply"
-			id="comment-{{ comment.id }}-reply-form">
+		<form action="/comment/{{ comment.id }}/reply?post={{ post.id }}" method="post" role="form"
+			class="hidden-reply" id="comment-{{ comment.id }}-reply-form">
 			<div class="form-group">
 				<textarea class="form-control" rows="4" name="text"></textarea>
 			</div>
