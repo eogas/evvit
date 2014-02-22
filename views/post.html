@@ -21,23 +21,7 @@
 	</form>
 
 	{% for comment in post.comments %}
-	<div class="comment" id="comment-{{ comment.id }}">
-		<div class="well well-sm">{{ comment.text }}</div>
-		<span class="comment-subtext">{{ comment.author.username }}</span>
-		<span class="comment-subtext"> - </span>
-		<span class="comment-subtext">{{ comment.date|date('m/d/Y g:i A') }} </span>
-		<span class="comment-subtext">
-			<a onclick="showReply({{ comment.id }});" id="comment-{{ comment.id }}-reply-link">reply</a>
-		</span>
-		<form action="/comment/{{ comment.id }}/reply?post={{ post.id }}" method="post" role="form"
-			class="hidden-reply" id="comment-{{ comment.id }}-reply-form">
-			<div class="form-group">
-				<textarea class="form-control" rows="4" name="text"></textarea>
-			</div>
-			<button type="submit" class="btn btn-primary">Reply</button>
-			<button type="button" onclick="hideReply({{ comment.id }});" class="btn btn-default">Cancel</button>
-		</form>
-	</div>
+		{% include "./threadedComment.html" %}
 	{% endfor %}
 
 </div>

@@ -60,6 +60,10 @@
 	margin-bottom: .3em;
 }
 
+.childcomment {
+	padding-left: 2em;
+}
+
 form {
 	margin-top: 1em;
 	margin-bottom: 1em;
