@@ -1,0 +1,9 @@
+{
+	"db_name": "evvit",
+	"db_user": "evvit",
+	"db_pass": "evvit",
+	"port": "8080",
+	"session_secret": "superSecretSecretChangeThis",
+	"bcrypt_cost": 12,
+	"dev": false
+}

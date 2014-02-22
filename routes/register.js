@@ -1,7 +1,8 @@
 
 var passport = require('passport'),
 	bcrypt = require('bcrypt'),
-	models = require('../models');
+	models = require('../models'),
+	config = require('../config');
 
 module.exports = function(app) {
 	app.post('/register', function(req, res) {
@@ -28,7 +29,7 @@ module.exports = function(app) {
 			}
 
 			// hash the password
-			bcrypt.hash(password, 12, function(err, hash) {
+			bcrypt.hash(password, config.bcrypt_cost, function(err, hash) {
 				if (err) {
 					console.log(err);
 					return;

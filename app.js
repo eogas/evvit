@@ -1,4 +1,6 @@
 
+var config = require('./config.js');
+
 var express = require('express'),
 	app = express(),
 	swig = require('swig'),
@@ -11,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.cookieParser());
-app.use(express.session({ secret: 'mysupersecretsecretchangethis' }));
+app.use(express.session({ secret: config.session_secret }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
@@ -21,12 +23,15 @@ app.engine('html', swig.renderFile);
 app.set('view_engine', 'html');
 app.set('views', __dirname + '/views');
 
-// TODO: Enable one of these by default, and disable it in dev mode
 app.set('view cache', false);
-swig.setDefaults({ cache: false });
+
+// disable view caching in dev mode
+if (config.dev) {
+	swig.setDefaults({ cache: false });
+}
 
 var auth = require('./auth'),
 	routes = require('./routes')(app);
 
-app.listen(8080);
-console.log('Listening on port 8080...');
+app.listen(config.port);
+console.log('Listening on port ' + config.port + '...');
