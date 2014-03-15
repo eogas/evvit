@@ -1,7 +1,7 @@
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		req.models.Post.find({}, "date", function(err, posts) {
+		req.models.Post.find({}, ['date', 'Z'], function(err, posts) {
 			if (err) {
 				console.log(err);
 			}
