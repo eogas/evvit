@@ -10,6 +10,11 @@ module.exports = function(app) {
 		var title = req.body.title,
 			url = req.body.url;
 
+		// insert http:// if the user failed to do so
+		if (url.indexOf('://') === -1) {
+			url = 'http://' + url;
+		}
+
 		req.models.Post.create([{
 			author: req.user,
 			title: title,
