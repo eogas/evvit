@@ -11,5 +11,10 @@
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
     "bcrypt": "~0.7.7"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "closure-linter-wrapper": "~0.2.9",
+    "grunt-gjslint": "~0.1.4"
   }
 }
