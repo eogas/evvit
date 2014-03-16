@@ -15,6 +15,7 @@ module.exports = function(app) {
             models.User = require('./user.js')(db);
             models.Post = require('./post.js')(db);
             models.Comment = require('./comment.js')(db);
+            models.Vote = require('./vote.js')(db);
 
             // set up relations
             for (var model in models) {

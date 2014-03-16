@@ -4,6 +4,7 @@ module.exports = function(app) {
         req.models.Post.find({}, ['date', 'Z'], function(err, posts) {
             if (err) {
                 console.log(err);
+                return;
             }
 
             res.render('home.html', {

@@ -1,20 +1,23 @@
 
 module.exports = function(db) {
     var Vote = db.define('vote', {
-        value: int
+        value: Number
     });
 
     Vote.setRelations = function(relModels) {
         Vote.hasOne('voter', relModels.User, {
-            reverse: 'votes'
+            reverse: 'votes',
+            autoFetch: true
         });
 
         Vote.hasOne('post', relModels.Post, {
-            reverse: 'votes'
+            reverse: 'votes',
+            autoFetch: true
         });
 
         Vote.hasOne('comment', relModels.Comment, {
-            reverse: 'votes'
+            reverse: 'votes',
+            autoFetch: true
         });
     };
 
