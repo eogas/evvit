@@ -73,3 +73,22 @@ form {
 .hidden-reply {
 	display: none;
 }
+
+.vote {
+	color: #ccc;
+	font-size: 17px;
+	margin-bottom: 2px;
+}
+
+.vote-up {
+	color: #69ce39;
+}
+
+.vote-down {
+	color: #5e5e5e;
+}
+
+.vote-container {
+	width: 32px;
+	float: left;
+}
