@@ -9,7 +9,7 @@
 	{% if user %}
 	<div class="vote-container">
 
-		<a onclick="voteup(this);">
+		<a onclick="voteup(this, {{ post.id }});">
 		{% if post.userScore(user) == 1 %}
 			<div class="glyphicon glyphicon-circle-arrow-up vote vote-up"></div>
 		{% else %}
@@ -17,7 +17,7 @@
 		{% endif %}
 		</a>
 
-		<a onclick="votedown(this);">
+		<a onclick="votedown(this, {{ post.id }});">
 		{% if post.userScore(user) == -1 %}
 			<div class="glyphicon glyphicon-circle-arrow-down vote vote-down"></div>
 		{% else %}
@@ -27,7 +27,8 @@
 	</div>
 	{% endif %}
 	<span>
-		<a href="{{ post.url }}">({{ post.score() }}) {{ post.title }}</a>
+		<span class="post-subtext">({{ post.score() }}) </span>
+		<a href="{{ post.url }}">{{ post.title }}</a>
 		<div>
 			<span class="post-subtext">
 				<a href="/post/{{ post.id }}">comments</a>

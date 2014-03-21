@@ -7,4 +7,5 @@ module.exports = function(app) {
     exports.home = require('./post.js')(app);
     exports.home = require('./register.js')(app);
     exports.home = require('./submit.js')(app);
+    exports.home = require('./vote.js')(app);
 };
