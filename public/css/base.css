@@ -42,6 +42,12 @@
 	color: #999;
 }
 
+.post-score {
+	font-size: 0.8em;
+	color: #999;
+	text-align: center;
+}
+
 .comment {
 	margin-top: 2em;
 	margin-bottom: 2em;
@@ -69,7 +75,6 @@ form {
 	margin-bottom: 1em;
 }
 
-
 .hidden-reply {
 	display: none;
 }
@@ -77,8 +82,11 @@ form {
 .vote {
 	color: #ccc;
 	font-size: 17px;
-	margin-bottom: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
 	cursor: pointer;
+	width: 18px;
+	height: 18px;
 }
 
 .vote-up {
@@ -92,4 +100,9 @@ form {
 .vote-container {
 	width: 32px;
 	float: left;
+}
+
+.vote-container div {
+	margin-left: auto;
+	margin-right: auto;
 }
