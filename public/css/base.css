@@ -35,6 +35,7 @@
 .post {
 	margin-top: 1em;
 	margin-bottom: 1em;
+	clear: left;
 }
 
 .post-subtext {
@@ -100,6 +101,7 @@ form {
 .vote-container {
 	width: 32px;
 	float: left;
+	margin-bottom: 1em;
 }
 
 .vote-container div {
