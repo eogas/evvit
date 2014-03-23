@@ -2,7 +2,10 @@
 module.exports = function(db) {
     var Comment = db.define('comment', {
         text: String,
-        date: Date
+        date: {
+            type: 'date',
+            time: true
+        }
     });
 
     Comment.setRelations = function(relModels) {

@@ -3,7 +3,10 @@ module.exports = function(db) {
     var Post = db.define('post', {
         title: String,
         url: String,
-        date: Date
+        date: {
+            type: 'date',
+            time: true
+        }
     }, {
         methods: {
             score: function() {
