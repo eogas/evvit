@@ -20,12 +20,20 @@ module.exports = function(app) {
             title: title,
             url: url,
             date: new Date()
-        }], function(err, items) {
+        }], function(err, posts) {
             if (err) {
                 console.log(err);
+                return;
             }
 
-            res.redirect('/');
+            // give the post an automatic upvote from the submitter
+            req.models.Vote.create([{
+                voter: req.user,
+                post: posts[0],
+                value: 1
+            }], function(err, votes) {
+                res.redirect('/');
+            });
         });
     });
 };
