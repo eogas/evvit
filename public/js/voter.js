@@ -2,7 +2,7 @@
 var adjustPostScore = function(elem, adjust) {
     var scoreElem = elem.getElementsByClassName('post-score')[0];
 
-    scoreElem.innerText = parseInt(scoreElem.innerText) + adjust;
+    scoreElem.innerHTML = parseInt(scoreElem.innerHTML) + adjust;
 };
 
 var voteup = function(link, postId) {
