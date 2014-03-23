@@ -32,7 +32,9 @@ module.exports = function(app) {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.send(200);
+                            post.getVotes(function(err, votes) {
+                                res.send(200);
+                            });
                         }
                     });
                 } else {
