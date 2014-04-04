@@ -38,7 +38,7 @@
 			<span class="post-subtext">submitted by</span>
 			<span class="post-subtext">{{ post.author.username }}</span>
 			<span class="post-subtext"> - </span>
-			<span class="post-subtext">{{ post.date|date('m/d/Y g:i A') }}</span>
+			<span class="post-subtext">{{ post.date|date('m/d/Y g:i A', post.date.getTimezoneOffset()) }}</span>
 		</div>
 	</span>
 </div>
