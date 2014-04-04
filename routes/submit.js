@@ -7,8 +7,17 @@ module.exports = function(app) {
     });
 
     app.post('/submit', function(req, res) {
-        var title = req.body.title,
-            url = req.body.url;
+        var title = req.body.title || '',
+            url = req.body.url || '';
+
+        title = title.trim();
+        url = url.trim();
+
+        if (!title || !url) {
+            // TODO: error flash
+            res.redirect('/submit');
+            return;
+        }
 
         // insert http:// if the user failed to do so
         if (url.indexOf('://') === -1) {
