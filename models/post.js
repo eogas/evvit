@@ -10,7 +10,9 @@ module.exports = function(sequelize, DataTypes) {
                 Post.hasOne(models.User, {as: 'author'});
 
                 Post.hasMany(models.Comment, {as: 'comments'});
-            },
+            }
+        },
+        instanceMethods: {
             score: function() {
                 var score = 0;
 
