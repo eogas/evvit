@@ -1,4 +1,6 @@
 
+var models = require('../models');
+
 module.exports = function(app) {
     app.get('/submit', function(req, res) {
         res.render('submit.html', {
@@ -24,7 +26,7 @@ module.exports = function(app) {
             url = 'http://' + url;
         }
 
-        req.models.Post.create([{
+        models.Post.create([{
             author: req.user,
             title: title,
             url: url,
@@ -36,7 +38,7 @@ module.exports = function(app) {
             }
 
             // give the post an automatic upvote from the submitter
-            req.models.Vote.create([{
+            models.Vote.create([{
                 voter: req.user,
                 post: posts[0],
                 value: 1

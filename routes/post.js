@@ -1,5 +1,7 @@
 
-var util = require('../util.js');
+var util = require('../util.js'),
+    models = require('../models');
+
 
 var walkComments = function(comments, cb) {
     var head = util.head(comments),
@@ -22,7 +24,7 @@ module.exports = function(app) {
     app.get('/post/:id', function(req, res) {
         var postId = req.params.id;
 
-        req.models.Post.get(postId, function(err, post) {
+        models.Post.get(postId, function(err, post) {
             if (err) {
                 console.log(err);
                 return;

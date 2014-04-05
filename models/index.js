@@ -1,38 +1,34 @@
 
-var orm = require('orm'),
-    config = require('../config');
-
-module.exports = function(app) {
-    app.use(orm.express(
-        'mysql://' +
-        config.db_user + ':' + config.db_pass +
-        '@localhost/' + config.db_name, {
-
-        define: function(db, models) {
-            db.settings.set('instance.autoFetchLimit', 2);
-
-            // set up models
-            models.User = require('./user.js')(db);
-            models.Post = require('./post.js')(db);
-            models.Comment = require('./comment.js')(db);
-            models.Vote = require('./vote.js')(db);
-
-            // set up relations
-            for (var model in models) {
-                if (models[model].setRelations) {
-                    models[model].setRelations(models);
-                }
-            }
-
-            // synchronize models to create tables
-            db.sync(function(err) {
-                console.log(err || 'ORM: tables synchronized!');
-            });
-
-            // export the models
-            for (model in models) {
-                module.exports[model] = models[model];
-            }
+var config = require('../config'),
+    fs = require('fs'),
+    path = require('path'),
+    Sequelize = require('sequelize'),
+    lodash = require('lodash'),
+    sequelize = new Sequelize(
+        config.db_name,
+        config.db_user,
+        config.db_pass, {
+            dialect: 'mysql',
+            port: config.db_port
         }
-    }));
-};
+    ),
+    db = {};
+
+fs.readdirSync(__dirname).filter(function(file) {
+    return (file.indexOf('.') !== 0) && (file !== 'index.js');
+})
+.forEach(function(file) {
+    var model = sequelize.import(path.join(__dirname, file));
+    db[model.name] = model;
+});
+
+Object.keys(db).forEach(function(modelName) {
+    if ('associate' in db[modelName]) {
+        db[modelName].associate(db);
+    }
+});
+
+module.exports = lodash.extend({
+    sequelize: sequelize,
+    Sequelize: Sequelize
+}, db);

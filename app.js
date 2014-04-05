@@ -6,7 +6,7 @@ var express = require('express'),
     swig = require('swig'),
     passport = require('passport');
 
-var models = require('./models')(app);
+var models = require('./models');
 
 // express config
 app.use(express.static(__dirname + '/public'));
@@ -33,5 +33,14 @@ if (config.dev) {
 var auth = require('./auth'),
     routes = require('./routes')(app);
 
-app.listen(config.port);
-console.log('Listening on port ' + config.port + '...');
+models.sequelize.sync({
+    force: true
+})
+.complete(function(err) {
+    if (err) {
+        throw err;
+    }
+
+    app.listen(config.port);
+    console.log('Listening on port ' + config.port + '...');
+});

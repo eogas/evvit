@@ -1,14 +1,16 @@
 
-module.exports = function(db) {
-    var Post = db.define('post', {
-        title: String,
-        url: String,
-        date: {
-            type: 'date',
-            time: true
-        }
+module.exports = function(sequelize, DataTypes) {
+    var Post = sequelize.define('Post', {
+        title: DataTypes.STRING,
+        url: DataTypes.STRING,
+        date: DataTypes.DATE
     }, {
-        methods: {
+        classMethods: {
+            associate: function(models) {
+                Post.hasOne(models.User, {as: 'author'});
+
+                Post.hasMany(models.Comment, {as: 'comments'});
+            },
             score: function() {
                 var score = 0;
 
@@ -33,13 +35,6 @@ module.exports = function(db) {
             }
         }
     });
-
-    Post.setRelations = function(relModels) {
-        Post.hasOne('author', relModels.User, {
-            reverse: 'posts',
-            autoFetch: true
-        });
-    };
 
     return Post;
 };

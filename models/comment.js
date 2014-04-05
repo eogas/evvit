@@ -1,29 +1,19 @@
 
-module.exports = function(db) {
-    var Comment = db.define('comment', {
-        text: String,
-        date: {
-            type: 'date',
-            time: true
+module.exports = function(sequelize, DataTypes) {
+    var Comment = sequelize.define('Comment', {
+        text: DataTypes.STRING,
+        date: DataTypes.DATE
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Comment.hasOne(models.User, {as: 'author'});
+                Comment.hasOne(models.Post, {as: 'parentPost'});
+                Comment.hasOne(models.Comment, {as: 'parentComment'});
+
+                Comment.hasMany(models.Comment, {as: 'children'});
+            }
         }
     });
-
-    Comment.setRelations = function(relModels) {
-        Comment.hasOne('author', relModels.User, {
-            reverse: 'comments',
-            autoFetch: true
-        });
-
-        Comment.hasOne('parentPost', relModels.Post, {
-            reverse: 'comments',
-            autoFetch: true
-        });
-
-        Comment.hasOne('parentComment', relModels.Comment, {
-            reverse: 'children',
-            autoFetch: true
-        });
-    };
 
     return Comment;
 };

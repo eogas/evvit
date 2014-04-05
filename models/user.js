@@ -1,12 +1,17 @@
 
-module.exports = function(db) {
-    var User = db.define('user', {
-        username: String,
-        password: String
+module.exports = function(sequelize, DataTypes) {
+    var User = sequelize.define('User', {
+        username: DataTypes.STRING,
+        password: DataTypes.STRING
+    }, {
+        classMethods: {
+            associate: function(models) {
+                User.hasMany(models.Vote, {as: 'votes'});
+                User.hasMany(models.Post, {as: 'posts'});
+                User.hasMany(models.Comment, {as: 'comments'});
+            }
+        }
     });
-
-    User.setRelations = function(relModels) {
-    };
 
     return User;
 };

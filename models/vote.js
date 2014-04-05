@@ -1,25 +1,16 @@
 
-module.exports = function(db) {
-    var Vote = db.define('vote', {
-        value: Number
+module.exports = function(sequelize, DataTypes) {
+    var Vote = sequelize.define('Vote', {
+        value: DataTypes.INTEGER
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Vote.hasOne(models.User, {as: 'voter'});
+                Vote.hasOne(models.Post, {as: 'post'});
+                Vote.hasOne(models.Comment, {as: 'comment'});
+            }
+        }
     });
-
-    Vote.setRelations = function(relModels) {
-        Vote.hasOne('voter', relModels.User, {
-            reverse: 'votes',
-            autoFetch: true
-        });
-
-        Vote.hasOne('post', relModels.Post, {
-            reverse: 'votes',
-            autoFetch: true
-        });
-
-        Vote.hasOne('comment', relModels.Comment, {
-            reverse: 'votes',
-            autoFetch: true
-        });
-    };
 
     return Vote;
 };
